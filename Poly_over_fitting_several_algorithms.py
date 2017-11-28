@@ -6,6 +6,7 @@
 # Software: PyCharm Community Edition
 
 
+import warnings
 import numpy as np
 import pandas as pd
 import matplotlib as mpl
@@ -13,8 +14,10 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression, RidgeCV, LassoCV, ElasticNetCV
+from sklearn.linear_model.coordinate_descent import ConvergenceWarning
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import PolynomialFeatures
+warnings.filterwarnings(action = 'ignore', category=ConvergenceWarning)
 
 
 mpl.rcParams[u'font.sans-serif'] = [u'simHei']
@@ -65,6 +68,8 @@ for i, d in enumerate(degree):
     model.fit(x, y)
 
     lin = model.get_params('Linear')['Linear']
+    print(u'参数:', model.get_params('Linear')['Linear'].coef_)
+    print(u'截距:', model.get_params('Linear')['Linear'].intercept_)
     output = u'%d阶，系数为：' % (d)
     print(output, lin.coef_.ravel())
 
@@ -76,8 +81,8 @@ for i, d in enumerate(degree):
     z = N - 1 if (d == 2) else 0
     label = u'%d阶, 正确率=%.3f' % (d, s)
     plt.plot(x_hat, y_hat, color=colors[i], lw=2, alpha=0.75, label=label, zorder=z)
-
     plt.legend(loc='upper left')
+
     plt.grid(True)
     plt.xlabel('X', fontsize=16)
     plt.ylabel('Y', fontsize=16)
