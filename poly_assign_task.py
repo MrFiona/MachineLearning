@@ -87,6 +87,11 @@ for i in range(4):
     plt.plot(length, y_test, 'r-', lw=2, label=u'电流真实值', alpha=0.75)
     plt.plot(length, y_predict, '%s-' % colors[i], lw=2, label=u'电流预测值', alpha=0.75)
     plt.title(u'The %s $R^2$: %.10f' % (title[i], model.best_score_))
+    print 'cv_results_:\t', model.cv_results_
+    print 'best_estimator_:\t', model.best_estimator_
+    print 'best_score_:\t', model.best_score_
+    print 'best_params_:\t', model.best_params_
+    print 'best_index_:\t', model.best_index_
     # todo 设置横纵坐标标签
     plt.xlabel(u'功率', fontsize=12, color='m')
     plt.ylabel(u'电流', fontsize=12, color='m')
@@ -95,3 +100,4 @@ for i in range(4):
 plt.grid()
 plt.savefig('poly_test.png', format='png', dpi=fig.dpi)
 plt.show()
+pd.Categorical()
