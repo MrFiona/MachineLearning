@@ -148,7 +148,7 @@ for num in range(4):
     plt.plot(length, y_predict_cv, '%s-' % color_combine[num][1], label=u'预测值', lw=2, alpha=0.7)
     plt.xlabel(u'变量')
     plt.ylabel(u'房价')
-    plt.legend(['%s算法:R^2值=%.10f(%d 阶)' % (title[num], model.best_score_, model.best_params_['poly__degree'])], loc='upper left')
+    plt.legend([U'%s算法:R^2值=%.10f(%d 阶)' % (title[num], model.best_score_, model.best_params_['poly__degree'])], loc='upper left')
     plt.grid()
 
 plt.savefig('boston_house_chart.png', format='png')
