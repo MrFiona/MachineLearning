@@ -39,7 +39,7 @@ iris_feature_C = '花萼长度', '花萼宽度', '花瓣长度', '花瓣宽度'
 iris_class = 'Iris-setosa', 'Iris-versicolor', 'Iris-virginica'
 
 #todo 读取数据
-path = './iris.data'
+path = './datas/iris.data'
 data = pd.read_csv(path, header=None)
 # print(data, type(data))
 #todo 获取X变量
@@ -51,7 +51,8 @@ y=pd.Categorical(data[4]).codes
 print("总样本数目：%d;特征属性数目:%d" % x.shape)
 
 #todo 数据分割（训练集和测试集）
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=14)
+x_train1, x_test1, y_train1, y_test1 = train_test_split(x, y, test_size=0.2, random_state=14)
+x_train, x_test, y_train, y_test = x_train1, x_test1, y_train1, y_test1
 print("训练数据集样本数目：%d, 测试数据集样本数目：%d" % (x_train.shape[0], x_test.shape[0]))
 
 #todo 数据标准化
