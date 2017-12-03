@@ -124,10 +124,7 @@ print ("Classes:", model.classes_)
 #todo 画图
 #todo 横纵各采样多少个值
 N = 100
-# print(x_test)
-# print(x_train.T[0], type(x_train.T[0]))
-# print(x_train.T[0].min())
-# print(x_train.T[0].max())
+
 #todo pca降维降到了2维
 print(x_train.shape, x_test.shape)
 #todo 分别求出每个特征列对应的最小最大值
