@@ -25,7 +25,6 @@ iris_feature = u'花萼长度', u'花萼宽度', u'花瓣长度', u'花瓣宽度
 #todo 数据文件路径
 path = './datas/iris.data'
 data = pd.read_csv(path, header=None)
-# print(data, type(data))
 x, y = data.loc[:, 0:3], data.loc[:, 4]
 y = pd.Categorical(y).codes
 x = x[[0, 1]]
