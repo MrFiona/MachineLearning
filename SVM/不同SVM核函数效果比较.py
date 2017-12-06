@@ -93,3 +93,100 @@ plt.grid(b=True)
 plt.suptitle(u'鸢尾花数据SVM分类器不同内核函数模型比较', fontsize=16)
 
 plt.show()
+
+
+### 预测结果画图
+### 画图比较
+N = 500
+x1_min, x2_min = x.min()
+x1_max, x2_max = x.max()
+
+t1 = np.linspace(x1_min, x1_max, N)
+t2 = np.linspace(x2_min, x2_max, N)
+x1, x2 = np.meshgrid(t1, t2)  # 生成网格采样点
+grid_show = np.dstack((x1.flat, x2.flat))[0] # 测试点
+
+## 获取各个不同算法的测试值
+svm1_grid_hat = svm1.predict(grid_show)
+svm1_grid_hat = svm1_grid_hat.reshape(x1.shape)  # 使之与输入的形状相同
+
+svm2_grid_hat = svm2.predict(grid_show)
+svm2_grid_hat = svm2_grid_hat.reshape(x1.shape)  # 使之与输入的形状相同
+
+svm3_grid_hat = svm3.predict(grid_show)
+svm3_grid_hat = svm3_grid_hat.reshape(x1.shape)  # 使之与输入的形状相同
+
+svm4_grid_hat = svm4.predict(grid_show)
+svm4_grid_hat = svm4_grid_hat.reshape(x1.shape)  # 使之与输入的形状相同
+
+## 画图
+cm_light = mpl.colors.ListedColormap(['#A0FFA0', '#FFA0A0', '#A0A0FF'])
+cm_dark = mpl.colors.ListedColormap(['g', 'r', 'b'])
+plt.figure(facecolor='w', figsize=(14,7))
+
+### svm
+plt.subplot(221)
+## 区域图
+plt.pcolormesh(x1, x2, svm1_grid_hat, cmap=cm_light)
+## 所以样本点
+plt.scatter(x[0], x[1], c=y, edgecolors='k', s=50, cmap=cm_dark)      # 样本
+## 测试数据集
+plt.scatter(x_test[0], x_test[1], s=120, facecolors='none', zorder=10)     # 圈中测试集样本
+## lable列表
+plt.xlabel(iris_feature[0], fontsize=13)
+plt.ylabel(iris_feature[1], fontsize=13)
+plt.xlim(x1_min, x1_max)
+plt.ylim(x2_min, x2_max)
+plt.title(u'鸢尾花Linear-SVM特征分类', fontsize=16)
+plt.grid(b=True, ls=':')
+plt.tight_layout(pad=1.5)
+
+plt.subplot(222)
+## 区域图
+plt.pcolormesh(x1, x2, svm2_grid_hat, cmap=cm_light)
+## 所以样本点
+plt.scatter(x[0], x[1], c=y, edgecolors='k', s=50, cmap=cm_dark)      # 样本
+## 测试数据集
+plt.scatter(x_test[0], x_test[1], s=120, facecolors='none', zorder=10)     # 圈中测试集样本
+## lable列表
+plt.xlabel(iris_feature[0], fontsize=13)
+plt.ylabel(iris_feature[1], fontsize=13)
+plt.xlim(x1_min, x1_max)
+plt.ylim(x2_min, x2_max)
+plt.title(u'鸢尾花rbf-SVM特征分类', fontsize=16)
+plt.grid(b=True, ls=':')
+plt.tight_layout(pad=1.5)
+
+plt.subplot(223)
+## 区域图
+plt.pcolormesh(x1, x2, svm3_grid_hat, cmap=cm_light)
+## 所以样本点
+plt.scatter(x[0], x[1], c=y, edgecolors='k', s=50, cmap=cm_dark)      # 样本
+## 测试数据集
+plt.scatter(x_test[0], x_test[1], s=120, facecolors='none', zorder=10)     # 圈中测试集样本
+## lable列表
+plt.xlabel(iris_feature[0], fontsize=13)
+plt.ylabel(iris_feature[1], fontsize=13)
+plt.xlim(x1_min, x1_max)
+plt.ylim(x2_min, x2_max)
+plt.title(u'鸢尾花poly-SVM特征分类', fontsize=16)
+plt.grid(b=True, ls=':')
+plt.tight_layout(pad=1.5)
+
+plt.subplot(224)
+## 区域图
+plt.pcolormesh(x1, x2, svm4_grid_hat, cmap=cm_light)
+## 所以样本点
+plt.scatter(x[0], x[1], c=y, edgecolors='k', s=50, cmap=cm_dark)      # 样本
+## 测试数据集
+plt.scatter(x_test[0], x_test[1], s=120, facecolors='none', zorder=10)     # 圈中测试集样本
+## lable列表
+plt.xlabel(iris_feature[0], fontsize=13)
+plt.ylabel(iris_feature[1], fontsize=13)
+plt.xlim(x1_min, x1_max)
+plt.ylim(x2_min, x2_max)
+plt.title(u'鸢尾花sigmoid-SVM特征分类', fontsize=16)
+plt.grid(b=True, ls=':')
+plt.tight_layout(pad=1.5)
+
+plt.show()
