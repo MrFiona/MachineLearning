@@ -53,6 +53,9 @@ t4=time.time()
 #todo 效果评估
 svm1_score1 = accuracy_score(y_train, svm1.predict(x_train))
 svm1_score2 = accuracy_score(y_test, svm1.predict(x_test))
+print(u'训练集准确率:', svm1.score(x_train, y_train))
+print(u'测试集准确率:', svm1.score(x_test, y_test))
+print(accuracy_score(y_train, svm1.predict(x_train)))
 
 svm2_score1 = accuracy_score(y_train, svm2.predict(x_train))
 svm2_score2 = accuracy_score(y_test, svm2.predict(x_test))
