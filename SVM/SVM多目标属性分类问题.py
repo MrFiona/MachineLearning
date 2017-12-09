@@ -55,7 +55,7 @@ def plot_subfigure(X, Y, subplot, title, transform):
     classif = OneVsRestClassifier(SVC(kernel='linear'))
     classif.fit(X, Y)
 
-    print (title, "准确率:", classif.score(X, Y))
+    print (title, u"准确率:", classif.score(X, Y))
 
     ## 画图
     plt.subplot(2, 2, subplot)
@@ -115,3 +115,5 @@ plot_subfigure(X, Y, 4, u"不包含不确定类别样本数据 + PCA", "pca")
 ## 图表展示
 plt.subplots_adjust(.04, .02, .97, .94, .09, .2)
 plt.show()
+
+print(3**13)
