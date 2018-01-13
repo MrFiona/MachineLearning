@@ -19,6 +19,7 @@ from sklearn.decomposition import PCA
 from sklearn.cross_decomposition import CCA
 
 
+
 ## 设置属性防止中文乱码
 mpl.rcParams['font.sans-serif'] = [u'SimHei']
 mpl.rcParams['axes.unicode_minus'] = False
