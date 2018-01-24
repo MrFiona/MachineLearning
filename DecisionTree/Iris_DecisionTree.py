@@ -21,7 +21,7 @@ if __name__ == "__main__":
     iris_feature = u'花萼长度', u'花萼宽度', u'花瓣长度', u'花瓣宽度'
     iris_class = 'Iris-setosa', 'Iris-versicolor', 'Iris-virginica'
 
-    path = '..\\9.Regression\\iris.data'  # 数据文件路径
+    path = '../datas/iris.data'  # 数据文件路径
     data = pd.read_csv(path, header=None)
     x = data[range(4)]
     # y = pd.Categorical(data[4]).codes
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     # 决策树参数估计
     # min_samples_split = 10：如果该结点包含的样本数目大于10，则(有可能)对其分支
     # min_samples_leaf = 10：若将某结点分支后，得到的每个子结点样本数目都大于10，则完成分支；否则，不进行分支
-    model = DecisionTreeClassifier(criterion='gini', max_depth=5, min_samples_split=10)
+    model = DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=10)
     model.fit(x_train, y_train)
     y_train_pred = model.predict(x_train)   # 训练数据
     y_test_hat = model.predict(x_test)      # 测试数据
@@ -47,9 +47,9 @@ if __name__ == "__main__":
     with open('iris.dot', 'w') as f:
         tree.export_graphviz(model, out_file=f)
     # 2、给定文件名
-    # tree.export_graphviz(model, out_file='iris1.dot')
+    tree.export_graphviz(model, out_file='iris1.dot')
     # 3、输出为pdf格式
-    dot_data = tree.export_graphviz(model, out_file=None, feature_names=iris_feature_E, class_names=iris_class,
+    dot_data = tree.export_graphviz(model, out_file=None,  feature_names=iris_feature_E, class_names=iris_class,
                                     filled=True, rounded=True, special_characters=True)
     graph = pydotplus.graph_from_dot_data(dot_data)
     graph.write_pdf('iris.pdf')

@@ -17,6 +17,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 
 
+
 ## 设置属性防止中文乱码
 mpl.rcParams['font.sans-serif'] = [u'SimHei']
 mpl.rcParams['axes.unicode_minus'] = False
@@ -75,3 +76,5 @@ plt.grid(True)
 plt.title(u"波士顿房屋价格预测(SVM)")
 plt.xlim(0, 101)
 plt.show()
+
+

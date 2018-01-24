@@ -22,7 +22,7 @@ iris_feature_C = '花萼长度', '花萼宽度', '花瓣长度', '花瓣宽度'
 iris_class = 'Iris-setosa', 'Iris-versicolor', 'Iris-virginica'
 
 #todo 读取数据
-path = './datas/iris.data'
+path = '../datas/iris.data'
 data = pd.read_csv(path, header=None)
 # print(data, type(data))
 #todo 获取X变量

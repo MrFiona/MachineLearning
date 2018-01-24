@@ -13,6 +13,8 @@ import matplotlib.pyplot as plt
 from sklearn import svm
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score
 
 
 #todo 设置属性防止中文乱码
@@ -23,7 +25,7 @@ np.set_printoptions(linewidth=1000, suppress=True)
 #todo 读取数据 'sepal length', 'sepal width', 'petal length', 'petal width'
 iris_feature = u'花萼长度', u'花萼宽度', u'花瓣长度', u'花瓣宽度'
 #todo 数据文件路径
-path = './datas/iris.data'
+path = '../datas/iris.data'
 data = pd.read_csv(path, header=None)
 x, y = data.loc[:, 0:3], data.loc[:, 4]
 y = pd.Categorical(y).codes
@@ -102,3 +104,9 @@ plt.title(u'鸢尾花SVM特征分类', fontsize=16)
 plt.grid(b=True, ls=':')
 plt.tight_layout(pad=1.5)
 plt.show()
+
+rf = RandomForestClassifier(200)
+
+score = cross_val_score(rf, x, y, scoring='accuracy')
+print np.mean(score)
+print score

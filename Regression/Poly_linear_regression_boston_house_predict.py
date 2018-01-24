@@ -32,7 +32,7 @@ warnings.filterwarnings(action = 'ignore', category=ConvergenceWarning)
 
 np.set_printoptions(linewidth=100, suppress=True)
 
-df = pd.read_csv('./datas/boston_housing.data', header=None)
+df = pd.read_csv('../datas/boston_housing.data', header=None)
 # print(df.values)
 
 data = np.empty((len(df), 14))

@@ -18,6 +18,8 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model.coordinate_descent import ConvergenceWarning
+from sklearn.ensemble import GradientBoostingClassifier, GradientBoostingRegressor
+from sklearn.feature_selection import SelectFromModel
 
 
 #todo 设置字符集，防止出现中文乱码
@@ -49,7 +51,7 @@ names = ['CRIM','ZN', 'INDUS','CHAS','NOX','RM','AGE','DIS','RAD','TAX','PTRATIO
     MEDV：自住房的平均房价，以千美元计。
 """
 #todo 由于数据集没有表头所以header设置为None， 否则第一行会被默认为header
-df = pd.read_csv('./datas/boston_housing.data', header=None)
+df = pd.read_csv('../datas/boston_housing.data', header=None)
 
 data = np.empty((len(df), 14))
 for index, value in enumerate(df.values):
@@ -57,6 +59,13 @@ for index, value in enumerate(df.values):
     data[index] = value_list
 
 X, Y = np.split(data, (13,), axis=1)
+# print X, type(X), len(X)
+# print Y, type(Y), len(Y)
+
+m = SelectFromModel(GradientBoostingRegressor()).fit_transform(X, Y.ravel())
+print m, len(m)
+
+
 #todo 转换格式
 Y = Y.ravel()
 print(data, len(data))
